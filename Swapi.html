@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="swapiController.js"></script>
+  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+  <link
+    href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <div class="container">
+        <!-- Start Of Star Wars Characters -->
+        <div class="row">
+          <div class="col-md-8">
+            <h2>Star Wars Characters : {{ totalStarWarsCharacters   }}</h2>
+          </div>
+          <div class="col-md-4" style="margin-top: 28px;">
+            <input
+              type="text"
+              ng-change="getStarWarsCharacters(searchText,'search')"
+              placeholder="Search Here..."
+              ng-model="searchText"
+            />
+          </div>
+        </div>
+
+        <table>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Eye Colour</th>
+          </tr>
+          <tr ng-repeat="character in starWarsCharacters track by $index">
+            <td>{{ $index + 1 + starWarsCharactersPageIndex }}</td>
+            <td>{{ character.name }}</td>
+            <td>{{ character.eye_color }}</td>
+          </tr>
+        </table>
+
+        <ul
+          uib-pagination
+          total-items="totalStarWarsCharacters"
+          ng-model="starWarsCharactersPage"
+          ng-change="getStarWarsCharacters(starWarsCharactersPage,'pageChange')"
+        ></ul>
+
+        <!-- End Of Star Wars Characters -->
+
+        <!-- Start of  -->
+      </div>
+    </div>
+  </body>
+</html>

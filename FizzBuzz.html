@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function($scope) {
+      $scope.array = []; //Initialized Empty Array
+      for (i = 1; i <= 100; i++) {
+        $scope.array.push(i); // Pushing 100 elements in the Array
+      }
+      $scope.checkForMultiple = function(number) {
+        /*
+         * Check For Multiple Of 3 or 5
+         */
+        if (number % 3 == 0 || number % 5 == 0) {
+          returnString = "";
+          if (number % 3 == 0) {
+            returnString += "Fizz";
+          }
+          if (number % 5 == 0) {
+            returnString += "Buzz";
+          }
+          return returnString;
+        } else {
+          /*
+           * Return number
+           */
+          return number;
+        }
+      };
+    });
+  </script>
+  <body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+      <div ng-repeat="number in array">
+        {{ checkForMultiple(number) }}
+      </div>
+    </div>
+  </body>
+</html>
